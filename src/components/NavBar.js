@@ -5,7 +5,6 @@ import {
   FormControl,
   InputGroup,
 } from "react-bootstrap";
-import { BiSearch } from "react-icons/bi";
 import "./styles/navbar.css";
 
 function NavBar({ searchMovies }) {
@@ -23,9 +22,6 @@ function NavBar({ searchMovies }) {
               className="d-flex justify-content-center me-3"
               dir="ltr"
             >
-              {/* <InputGroup.Text className="search-icon" dir="rtl">
-                <BiSearch />
-              </InputGroup.Text> */}
               <FormControl
                 type="search"
                 placeholder="بحث"

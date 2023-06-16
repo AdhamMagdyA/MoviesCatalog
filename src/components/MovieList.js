@@ -1,6 +1,7 @@
 import React from "react";
 import { Row } from "react-bootstrap";
 import MovieCard from "./MovieCard";
+import MoviesPagination from "./MoviesPagination.js";
 
 function MovieList({ movies }) {
   return (
@@ -10,6 +11,8 @@ function MovieList({ movies }) {
       ) : (
         <h1>لا يوجد أفلام</h1>
       )}
+
+      <MoviesPagination />
     </Row>
   );
 }
