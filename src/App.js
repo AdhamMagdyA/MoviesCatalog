@@ -7,10 +7,21 @@ import MovieList from "./components/MovieList";
 
 function App() {
   const [movies, setMovies] = useState([]);
+  const [totalPages, setTotalPages] = useState(1);
 
   const getMovies = async () => {
     const response = await axios.get(
       "https://api.themoviedb.org/3/movie/popular?language=ar&api_key=11ae0c1833b4f80baa0c8f53a07781c8"
+    );
+    setMovies(response.data.results);
+    response.data.total_pages <= 500
+      ? setTotalPages(response.data.total_pages)
+      : setTotalPages(500);
+  };
+
+  const getMoviesByPage = async (page) => {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/popular?language=ar&page=${page}&api_key=11ae0c1833b4f80baa0c8f53a07781c8`
     );
     setMovies(response.data.results);
   };
@@ -21,6 +32,9 @@ function App() {
       `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&page=1&language=ar&api_key=11ae0c1833b4f80baa0c8f53a07781c8`
     );
     setMovies(response.data.results);
+    response.data.total_pages <= 500
+      ? setTotalPages(response.data.total_pages)
+      : setTotalPages(500);
   };
 
   useEffect(() => {
@@ -31,7 +45,11 @@ function App() {
     <div className="App">
       <NavBar searchMovies={searchMovies} />
       <Container>
-        <MovieList movies={movies} />
+        <MovieList
+          movies={movies}
+          getMoviesByPage={getMoviesByPage}
+          totalPages={totalPages}
+        />
       </Container>
     </div>
   );

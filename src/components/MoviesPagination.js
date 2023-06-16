@@ -2,12 +2,13 @@ import React from "react";
 import ReactPaginate from "react-paginate";
 import "./styles/pagination.css";
 
-function MoviesPagination() {
+function MoviesPagination({ getMoviesByPage, pageCount }) {
   const handlePageClick = (e) => {
     const pageNumber = e.selected + 1;
+    console.log(pageNumber);
+    getMoviesByPage(pageNumber);
   };
 
-  const pageCount = 100;
   return (
     <ReactPaginate
       breakLabel="..."
