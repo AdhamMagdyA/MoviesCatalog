@@ -1,0 +1,12 @@
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.movie-poster {
+  width: 80%;
+  height: 100%;
+  object-fit: cover;
+}
