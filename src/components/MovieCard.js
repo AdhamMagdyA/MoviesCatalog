@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Card, Col } from "react-bootstrap";
 import "./styles/movie-card.css";
 import { Link } from "react-router-dom";
+import { Fade } from "react-reveal";
 
 function MovieCard({ movie }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -16,29 +17,31 @@ function MovieCard({ movie }) {
   return (
     <Col sm="3">
       <Link to={`/movie/${movie.id}`}>
-        <Card
-          className="bg-dark text-white my-2 cursor-pointer"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
-          <Card.Img
-            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-            alt="Card image"
-            className={"min_hight"}
-          />
-          {isHovered && (
-            <Card.ImgOverlay
-              className={
-                isHovered ? "overlay overlay-visible text-center" : "overlay"
-              }
-            >
-              <Card.Title>{movie.title}</Card.Title>
-              <Card.Text>{movie.original_title}</Card.Text>
-              <Card.Text>{movie.release_date}</Card.Text>
-              <Card.Text>التقييم: {movie.vote_average}</Card.Text>
-            </Card.ImgOverlay>
-          )}
-        </Card>
+        <Fade>
+          <Card
+            className="bg-dark text-white my-2 cursor-pointer"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <Card.Img
+              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+              alt="Card image"
+              className={"min_hight"}
+            />
+            {isHovered && (
+              <Card.ImgOverlay
+                className={
+                  isHovered ? "overlay overlay-visible text-center" : "overlay"
+                }
+              >
+                <Card.Title>{movie.title}</Card.Title>
+                <Card.Text>{movie.original_title}</Card.Text>
+                <Card.Text>{movie.release_date}</Card.Text>
+                <Card.Text>التقييم: {movie.vote_average}</Card.Text>
+              </Card.ImgOverlay>
+            )}
+          </Card>
+        </Fade>
       </Link>
     </Col>
   );
