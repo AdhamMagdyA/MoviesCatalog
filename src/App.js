@@ -1,9 +1,11 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
 import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axios from "axios";
 import NavBar from "./components/NavBar";
 import MovieList from "./components/MovieList";
+import MovieDetails from "./components/MovieDetails";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -45,11 +47,21 @@ function App() {
     <div className="App">
       <NavBar searchMovies={searchMovies} />
       <Container>
-        <MovieList
-          movies={movies}
-          getMoviesByPage={getMoviesByPage}
-          totalPages={totalPages}
-        />
+        <BrowserRouter>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <MovieList
+                  movies={movies}
+                  getMoviesByPage={getMoviesByPage}
+                  totalPages={totalPages}
+                />
+              }
+            />
+            <Route path="/movie/:id" element={<MovieDetails />} />
+          </Routes>
+        </BrowserRouter>
       </Container>
     </div>
   );

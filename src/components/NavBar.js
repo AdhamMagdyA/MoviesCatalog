@@ -14,7 +14,7 @@ function NavBar({ searchMovies }) {
   return (
     <Navbar bg="light" expand="lg">
       <Container className="my-1 ">
-        <Navbar.Brand href="#">أفلام</Navbar.Brand>
+        <Navbar.Brand href="/">أفلام</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Form className="d-flex flex-grow-1 justify-content-center">
