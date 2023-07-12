@@ -41,7 +41,6 @@ function App() {
 
   useEffect(() => {
     getMovies();
-    document.title = "اتفرج";
   }, []);
 
   return (
