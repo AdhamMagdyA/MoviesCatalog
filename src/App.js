@@ -1,46 +1,18 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
-import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
 import NavBar from "./components/NavBar";
 import MovieList from "./components/MovieList";
 import MovieDetails from "./components/MovieDetails";
 
 function App() {
-  const [totalPages, setTotalPages] = useState(1);
-
-  const getMoviesByPage = async (page) => {
-    const response = await axios.get(
-      `https://api.themoviedb.org/3/movie/popular?language=ar&page=${page}&api_key=11ae0c1833b4f80baa0c8f53a07781c8`
-    );
-  };
-
-  const searchMovies = async (query) => {
-    // if (query === "") return getMovies();
-    const response = await axios.get(
-      `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&page=1&language=ar&api_key=11ae0c1833b4f80baa0c8f53a07781c8`
-    );
-    response.data.total_pages <= 500
-      ? setTotalPages(response.data.total_pages)
-      : setTotalPages(500);
-  };
-
   return (
     <div className="App">
-      <NavBar searchMovies={searchMovies} />
+      <NavBar />
       <Container>
         <BrowserRouter>
           <Routes>
-            <Route
-              path="/"
-              element={
-                <MovieList
-                  getMoviesByPage={getMoviesByPage}
-                  totalPages={totalPages}
-                />
-              }
-            />
+            <Route path="/" element={<MovieList />} />
             <Route path="/movie/:id" element={<MovieDetails />} />
           </Routes>
         </BrowserRouter>

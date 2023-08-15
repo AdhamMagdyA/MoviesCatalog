@@ -2,7 +2,7 @@ import { ALL } from "../action_types/moviesTypes";
 
 const initialState = { movies: [], page: 0 };
 
-export default (state = initialState, action) => {
+export const moviesReducer = (state = initialState, action) => {
   switch (action.type) {
     case ALL:
       return {

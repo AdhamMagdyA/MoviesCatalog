@@ -5,7 +5,7 @@ import MoviesPagination from "./MoviesPagination.js";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMovies } from "../redux/actions/moviesAction";
 
-function MovieList({ getMoviesByPage, totalPages }) {
+function MovieList() {
   const [movies, setMovies] = useState([]);
   const dispatch = useDispatch();
 
@@ -26,10 +26,7 @@ function MovieList({ getMoviesByPage, totalPages }) {
         <h1>لا يوجد أفلام</h1>
       )}
 
-      <MoviesPagination
-        getMoviesByPage={getMoviesByPage}
-        pageCount={totalPages}
-      />
+      <MoviesPagination />
     </Row>
   );
 }

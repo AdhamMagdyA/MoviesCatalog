@@ -6,15 +6,18 @@ import {
   InputGroup,
 } from "react-bootstrap";
 import "./styles/navbar.css";
+import { useDispatch } from "react-redux";
+import { getAllMovies, searchMovies } from "../redux/actions/moviesAction";
 
-function NavBar({ searchMovies }) {
+function NavBar() {
+  const dispatch = useDispatch();
   const onSearch = (e) => {
-    searchMovies(e.target.value);
+    const searchValue = e.target.value;
+    if (searchValue === "") dispatch(getAllMovies());
+    else dispatch(searchMovies(searchValue));
   };
   const onSearchSubmit = (e) => {
     e.preventDefault();
-    window.location.href = "/";
-    searchMovies(e.target[0].value);
   };
   return (
     <Navbar bg="light" expand="lg">
@@ -31,6 +34,7 @@ function NavBar({ searchMovies }) {
               dir="ltr"
             >
               <FormControl
+                id="search-input"
                 type="search"
                 placeholder="بحث"
                 aria-label="Search"

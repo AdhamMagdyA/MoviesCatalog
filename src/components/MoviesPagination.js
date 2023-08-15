@@ -1,12 +1,26 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
 import "./styles/pagination.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getPageMovies, searchMovies } from "../redux/actions/moviesAction";
 
-function MoviesPagination({ getMoviesByPage, pageCount }) {
+function MoviesPagination() {
+  const [pageCount, setPageCount] = React.useState(0);
+
+  const dispatch = useDispatch();
+  const pages = useSelector((state) => state.page);
+
+  useEffect(() => {
+    setPageCount(pages > 500 ? 500 : pages);
+  }, [pages]);
+
   const handlePageClick = (e) => {
     const pageNumber = e.selected + 1;
-    console.log(pageNumber);
-    getMoviesByPage(pageNumber);
+    const searchValue = document.getElementById("search-input").value;
+    searchValue === ""
+      ? dispatch(getPageMovies(pageNumber))
+      : dispatch(searchMovies(searchValue, pageNumber));
   };
 
   return (

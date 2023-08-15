@@ -34,6 +34,8 @@ function MovieDetails() {
   };
 
   useEffect(() => {
+    // reset the search value
+    document.getElementById("search-input").value = "";
     getMovieDetails();
   });
 
@@ -70,7 +72,7 @@ function MovieDetails() {
                 </Card.Text>
                 <Card.Text className="text-center my-5">
                   {movieHomePage ? (
-                    <a href={movieHomePage} target="_blank">
+                    <a href={movieHomePage} target="_blank" rel="noreferrer">
                       <Button variant="primary" className="text-right">
                         رابط الفيلم
                       </Button>
